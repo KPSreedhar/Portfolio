@@ -24,6 +24,120 @@
   --red:#ff4444;
   --green:#3ddc84;
 }
+
+/* ══════════════════════════════════════════════════
+   THEME SYSTEM
+══════════════════════════════════════════════════ */
+/* LIGHT THEME */
+body.theme-light {
+  --black:#f5f0e8;
+  --dark:#ede8de;
+  --card:#e8e2d6;
+  --line:rgba(0,0,0,.09);
+  --white:#1a1a2e;
+  --grey:#666070;
+  background:var(--black);
+  color:var(--white);
+}
+body.theme-light nav{background:rgba(245,240,232,.92)}
+body.theme-light body::before{opacity:.015}
+
+/* OCEAN THEME */
+body.theme-ocean {
+  --black:#020d1a;
+  --dark:#041525;
+  --card:#061c30;
+  --line:rgba(100,200,255,.08);
+  --white:#d0eeff;
+  --grey:#5a8aaa;
+  --gold:#4fc3f7;
+  --gold2:#81d4fa;
+  --green:#26c6da;
+}
+
+/* ROSE THEME */
+body.theme-rose {
+  --black:#0e0508;
+  --dark:#160a0d;
+  --card:#1e0f13;
+  --line:rgba(255,100,150,.08);
+  --white:#fce4ec;
+  --grey:#9e6070;
+  --gold:#f48fb1;
+  --gold2:#f8bbd9;
+  --green:#f06292;
+}
+
+/* FOREST THEME */
+body.theme-forest {
+  --black:#030a05;
+  --dark:#071008;
+  --card:#0b180c;
+  --line:rgba(80,200,100,.08);
+  --white:#e8f5e9;
+  --grey:#5a8060;
+  --gold:#a5d6a7;
+  --gold2:#c8e6c9;
+  --green:#66bb6a;
+}
+
+/* ── FLOATING THEME BUTTON ── */
+#theme-btn {
+  position:fixed;
+  bottom:2rem;right:2rem;
+  width:52px;height:52px;
+  border-radius:50%;
+  background:var(--card);
+  border:1px solid rgba(232,201,122,.3);
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;z-index:300;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+  animation:fadeIn .6s 2s ease both;
+}
+#theme-btn:hover{transform:scale(1.12) rotate(30deg);box-shadow:0 12px 40px rgba(232,201,122,.25);border-color:var(--gold)}
+#theme-btn svg{width:22px;height:22px;fill:var(--gold);transition:fill .3s}
+@keyframes fadeIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+
+/* ── THEME PANEL ── */
+#theme-panel {
+  position:fixed;
+  bottom:5.5rem;right:2rem;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:1rem;
+  display:flex;flex-direction:column;gap:.6rem;
+  z-index:299;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  opacity:0;pointer-events:none;
+  transform:translateY(12px) scale(.96);
+  transition:opacity .25s,transform .25s;
+  min-width:160px;
+  backdrop-filter:blur(16px);
+}
+#theme-panel.open{opacity:1;pointer-events:all;transform:translateY(0) scale(1)}
+.tp-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--grey);padding-bottom:.4rem;
+  border-bottom:1px solid var(--line);margin-bottom:.2rem;
+}
+.tp-opt {
+  display:flex;align-items:center;gap:.7rem;
+  padding:.5rem .7rem;border-radius:6px;
+  cursor:none;transition:background .2s;
+  font-size:.8rem;font-weight:500;color:var(--white);
+}
+.tp-opt:hover{background:rgba(255,255,255,.06)}
+.tp-opt.active{background:rgba(232,201,122,.1);color:var(--gold)}
+.tp-swatch{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.2);flex-shrink:0}
+.sw-dark{background:linear-gradient(135deg,#e8c97a,#050508)}
+.sw-light{background:linear-gradient(135deg,#e8c97a,#f5f0e8)}
+.sw-ocean{background:linear-gradient(135deg,#4fc3f7,#020d1a)}
+.sw-rose{background:linear-gradient(135deg,#f48fb1,#0e0508)}
+.sw-forest{background:linear-gradient(135deg,#a5d6a7,#030a05)}
+
 html{scroll-behavior:smooth}
 body{
   background:var(--black);
@@ -107,7 +221,8 @@ nav{
    HERO
 ══════════════════════════════════════════════════ */
 #hero{
-  min-height:100vh;
+  height:calc(100vh - 46px);
+  min-height:540px;
   display:grid;
   grid-template-rows:1fr auto;
   padding:68px 0 0;
@@ -137,7 +252,7 @@ nav{
 .hero-stage{
   display:flex;flex-direction:column;
   justify-content:center;
-  padding:4rem 6vw 0;
+  padding:2rem 6vw 0;
   position:relative;z-index:2;
 }
 
@@ -146,7 +261,7 @@ nav{
   display:inline-flex;align-items:center;gap:.5rem;
   font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
   border:1px solid rgba(232,201,122,.2);padding:.4rem 1rem;border-radius:100px;
-  width:fit-content;margin-bottom:2.5rem;
+  width:fit-content;margin-bottom:1.4rem;
   opacity:0;animation:up .7s .4s ease forwards;
 }
 .dot-pulse{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
@@ -159,11 +274,11 @@ nav{
   font-weight:900;
   line-height:.95;
   letter-spacing:-.03em;
-  margin-bottom:2rem;
+  margin-bottom:.8rem;
 }
 .ht-line{
   display:block;
-  font-size:clamp(3.5rem,9vw,8.5rem);
+  font-size:clamp(2.8rem,7.8vw,7.5rem);
   overflow:hidden;
 }
 .ht-inner{
@@ -190,10 +305,10 @@ nav{
   opacity:0;animation:up .8s .9s ease forwards;
 }
 .hb-cell{
-  padding:2rem 0;
+  padding:1.3rem 0;
   border-right:1px solid var(--line);
   padding-left:6vw;
-  display:flex;flex-direction:column;gap:.4rem;
+  display:flex;flex-direction:column;gap:.3rem;
 }
 .hb-cell:last-child{border-right:none}
 .hb-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);font-family:'JetBrains Mono',monospace}
@@ -220,7 +335,7 @@ nav{
 /* ══════════════════════════════════════════════════
    TICKER
 ══════════════════════════════════════════════════ */
-.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.9rem 0;background:var(--dark);position:relative;z-index:1}
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.7rem 0;background:var(--dark);position:relative;z-index:1}
 .ticker-t{display:flex;width:max-content;animation:tick 20s linear infinite}
 .ticker-t span{
   font-family:'JetBrains Mono',monospace;
@@ -884,7 +999,7 @@ document.addEventListener('mousemove',e=>{
   c2.style.left=(rx-20)+'px';c2.style.top=(ry-20)+'px';
   requestAnimationFrame(loop);
 })();
-document.querySelectorAll('a,button,.pill,.cert-row,.xp-item,.bc,.stat-box,.stat-mini,.cc').forEach(el=>{
+document.querySelectorAll('a,button,.pill,.cert-row,.xp-item,.bc,.stat-box,.stat-mini,.cc,#theme-btn,.tp-opt').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('h'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('h'));
 });
@@ -923,6 +1038,62 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(t)t.scrollIntoView({behavior:'smooth'});
   });
 });
+
+/* THEME SWITCHER */
+function togglePanel(){
+  document.getElementById('theme-panel').classList.toggle('open');
+}
+function setTheme(name, el){
+  const body = document.body;
+  body.className = body.className.replace(/theme-\S+/g,'').trim();
+  if(name !== 'dark') body.classList.add('theme-'+name);
+  document.querySelectorAll('.tp-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('theme-panel').classList.remove('open');
+  localStorage.setItem('sk-theme', name);
+}
+// Restore saved theme
+const saved = localStorage.getItem('sk-theme');
+if(saved && saved !== 'dark'){
+  const opt = document.querySelector('.tp-opt[onclick*="'+saved+'"]');
+  if(opt) setTheme(saved, opt);
+}
+// Close panel on outside click
+document.addEventListener('click', e=>{
+  const panel = document.getElementById('theme-panel');
+  const btn = document.getElementById('theme-btn');
+  if(!panel.contains(e.target) && !btn.contains(e.target)){
+    panel.classList.remove('open');
+  }
+});
+
 </script>
+
+<!-- ── FLOATING THEME SWITCHER ── -->
+<button id="theme-btn" aria-label="Change theme" onclick="togglePanel()">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.06-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.32.15.65.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.35-.11.68-.19 1z"/>
+  </svg>
+</button>
+
+<div id="theme-panel">
+  <div class="tp-label">Choose Theme</div>
+  <div class="tp-opt active" onclick="setTheme('dark',this)">
+    <span class="tp-swatch sw-dark"></span> Dark Gold
+  </div>
+  <div class="tp-opt" onclick="setTheme('light',this)">
+    <span class="tp-swatch sw-light"></span> Light Warm
+  </div>
+  <div class="tp-opt" onclick="setTheme('ocean',this)">
+    <span class="tp-swatch sw-ocean"></span> Ocean Blue
+  </div>
+  <div class="tp-opt" onclick="setTheme('rose',this)">
+    <span class="tp-swatch sw-rose"></span> Rose Noir
+  </div>
+  <div class="tp-opt" onclick="setTheme('forest',this)">
+    <span class="tp-swatch sw-forest"></span> Forest Night
+  </div>
+</div>
+
 </body>
 </html>
