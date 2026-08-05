@@ -20,7 +20,6 @@ A modern and responsive personal portfolio website showcasing my skills, project
 I'm a BCA student and IT Support Intern passionate about web development, AI, and building practical solutions. Currently expanding my skills in Full Stack Development and modern technologies.
 
 ## 🔗 Connect With Me
-- GitHub: https://github.com/KPSreedhar
 - LinkedIn: https://www.linkedin.com/in/sreedhar-kp
 
 ## 📧 Contact
