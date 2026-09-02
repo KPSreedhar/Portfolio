@@ -453,28 +453,23 @@ section{position:relative;z-index:1}
 .proj-head .sec-title{margin-bottom:0}
 .proj-cnt{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--grey);letter-spacing:.1em}
 
-/* BENTO LAYOUT */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:260px;gap:1.5rem}
+/* BENTO LAYOUT — now a clean uniform 3-column x 2-row grid (6 projects) */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:1.5rem}
 .bc{
   background:var(--card);
   border:1px solid var(--line);
   border-radius:4px;overflow:hidden;position:relative;
   transition:border-color .35s,transform .4s;cursor:none;
   display:flex;flex-direction:column;
+  min-height:300px;
 }
 .bc:hover{border-color:rgba(232,201,122,.3);transform:translateY(-5px)}
-.bc.c1{grid-column:span 4;grid-row:span 1}
-.bc.c2{grid-column:span 2;grid-row:span 1}
-.bc.c3{grid-column:span 2;grid-row:span 1}
-.bc.c4{grid-column:span 2;grid-row:span 1}
-.bc.c5{grid-column:span 2;grid-row:span 1}
-.bc.c6{grid-column:span 6;grid-row:span 1;grid-auto-rows:160px}
-.bc.c6{height:180px}
 
 /* Thumbnail */
 .bc-thumb{
   flex:1;display:flex;align-items:center;justify-content:center;
   position:relative;overflow:hidden;
+  min-height:110px;
 }
 .bc-thumb .tbg{position:absolute;inset:0;transition:transform .6s cubic-bezier(.16,1,.3,1)}
 .bc:hover .tbg{transform:scale(1.07)}
@@ -498,7 +493,6 @@ section{position:relative;z-index:1}
   background:var(--card);
   flex-shrink:0;
 }
-.bc.c6 .bc-info{padding:.85rem 1.4rem}
 .bc-tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.6rem}
 .bc-tag{
   font-family:'JetBrains Mono',monospace;
@@ -509,9 +503,7 @@ section{position:relative;z-index:1}
 .tp{color:#a78bfa;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.05)}
 .tr{color:var(--green);border-color:rgba(61,220,132,.2);background:rgba(61,220,132,.05)}
 .bc-title{font-weight:700;font-size:.95rem;margin-bottom:.3rem;line-height:1.2}
-.bc.c1 .bc-title{font-size:1.05rem}
 .bc-desc{font-size:.78rem;color:var(--grey);line-height:1.55;font-weight:300}
-.bc.c6 .bc-desc{display:none}
 .bc-foot{
   display:flex;justify-content:space-between;align-items:center;
   padding:.75rem 1.4rem;border-top:1px solid var(--line);flex-shrink:0;
@@ -627,9 +619,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--gre
    RESPONSIVE
 ══════════════════════════════════════════════════ */
 @media(max-width:1100px){
-  .bc.c1{grid-column:span 6}
-  .bc.c2,.bc.c3,.bc.c4,.bc.c5{grid-column:span 3}
-  .bc.c6{grid-column:span 6}
+  .bento{grid-template-columns:1fr 1fr}
   #about,#skills .skills-wrap,#stack .stack-layout{grid-template-columns:1fr;gap:4rem}
   .contact-cards{grid-template-columns:1fr 1fr}
   .hero-bottom{grid-template-columns:1fr}
@@ -637,8 +627,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--gre
   .hb-cell:last-child{border-bottom:none}
 }
 @media(max-width:750px){
-  .bento{grid-template-columns:1fr 1fr}
-  .bc.c1,.bc.c2,.bc.c3,.bc.c4,.bc.c5,.bc.c6{grid-column:span 2}
+  .bento{grid-template-columns:1fr}
   .nav-menu li:not(:last-child){display:none}
   .contact-cards{grid-template-columns:1fr 1fr}
   footer{flex-direction:column;text-align:center}
@@ -834,67 +823,68 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--gre
       <div class="eyebrow">GitHub Projects</div>
       <h2 class="sec-title">Things I've <em>Built</em></h2>
     </div>
-    <div class="proj-cnt">Projects</div>
+    <div class="proj-cnt">6 Projects</div>
   </div>
-   <div class="bc c1 d1">
-  <div class="bc-thumb"><div class="tbg t2"></div><span class="bc-emoji">💻</span></div>
-  <div class="bc-info">
-    <div class="bc-tags"><span class="bc-tag tg">HTML</span><span class="bc-tag tp">Bootstrap</span><span class="bc-tag tr">jQuery</span></div>
-    <div class="bc-title">IT Assets Manager</div>
-    <div class="bc-desc">Internal IT asset tracking system — hardware & software inventory, employee records, full assignment history, bulk CSV import, and a field-level activity log.</div>
-  </div>
-  <div class="bc-foot"><a href="#" target="_blank" class="bc-link">View on GitHub →</a><span class="bc-meta">PHP</span><span class="bc-meta">MySQL</span></div>
-</div>
 
   <div class="bento">
-    <div class="bc c2 rev d2">
+    <div class="bc rev d1">
+      <div class="bc-thumb"><div class="tbg t2"></div><span class="bc-emoji">💻</span></div>
+      <div class="bc-info">
+        <div class="bc-tags"><span class="bc-tag tg">HTML</span><span class="bc-tag tp">Bootstrap</span><span class="bc-tag tr">jQuery</span></div>
+        <div class="bc-title">IT Assets Manager</div>
+        <div class="bc-desc">Internal IT asset tracking system — hardware &amp; software inventory, employee records, full assignment history, bulk CSV import, and a field-level activity log.</div>
+      </div>
+      <div class="bc-foot"><a href="#" target="_blank" class="bc-link">View on GitHub →</a><span class="bc-meta">PHP · MySQL</span></div>
+    </div>
+
+    <div class="bc rev d2">
       <div class="bc-thumb"><div class="tbg t1"></div><span class="bc-emoji">🧵</span></div>
       <div class="bc-info">
         <div class="bc-tags"><span class="bc-tag tg">HTML</span><span class="bc-tag tp">JavaScript</span><span class="bc-tag tr">CSS</span></div>
         <div class="bc-title">Garment Payroll System</div>
         <div class="bc-desc">Full payroll management for garment factories — worker records, daily entries, salary calculation, payroll reports with localStorage persistence.</div>
       </div>
-      <div class="bc-foot"><a href="https://github.com/KPSreedhar/Garment-Payroll-System" target="_blank" class="bc-link">View on GitHub →</a><span class="bc-meta">PHP</span><span class="bc-meta">MySQL</span></div>
+      <div class="bc-foot"><a href="https://github.com/KPSreedhar/Garment-Payroll-System" target="_blank" class="bc-link">View on GitHub →</a><span class="bc-meta">PHP · MySQL</span></div>
     </div>
 
-    <div class="bc c3 rev d3">
+    <div class="bc rev d3">
       <div class="bc-thumb"><div class="tbg t2"></div><span class="bc-emoji">📝</span></div>
       <div class="bc-info">
         <div class="bc-tags"><span class="bc-tag tg">HTML</span><span class="bc-tag tp">API</span></div>
         <div class="bc-title">MR Guide</div>
-        <div class="bc-desc">A guide for Framworks and inbuild API's</div>
+        <div class="bc-desc">A guide for frameworks and inbuilt APIs.</div>
       </div>
       <div class="bc-foot"><a href="https://github.com/KPSreedhar/MR_Guide" target="_blank" class="bc-link">GitHub →</a><span class="bc-meta">React + Vite</span></div>
     </div>
 
-    <div class="bc c4 rev d1">
+    <div class="bc rev d1">
       <div class="bc-thumb"><div class="tbg t3"></div><span class="bc-emoji">⌛</span></div>
       <div class="bc-info">
         <div class="bc-tags"><span class="bc-tag tg">HTML</span><span class="bc-tag tp">JS</span></div>
         <div class="bc-title">LoaderLab</div>
-        <div class="bc-desc">Discover beautiful CSS loaders with complete source code</div>
+        <div class="bc-desc">Discover beautiful CSS loaders with complete source code.</div>
       </div>
-      <div class="bc-foot"><a href="https://github.com/KPSreedhar/Loader-Lab" target="_blank" class="bc-link">GitHub →</a><span class="bc-meta">HTML</span><span class="bc-meta">CSS</span></div>
+      <div class="bc-foot"><a href="https://github.com/KPSreedhar/Loader-Lab" target="_blank" class="bc-link">GitHub →</a><span class="bc-meta">HTML · CSS</span></div>
     </div>
 
-    <div class="bc c5 rev d2">
+    <div class="bc rev d2">
       <div class="bc-thumb"><div class="tbg t4"></div><span class="bc-emoji">🎮</span></div>
       <div class="bc-info">
         <div class="bc-tags"><span class="bc-tag tp">JS</span><span class="bc-tag tg">HTML</span></div>
         <div class="bc-title">MazeMaster</div>
-        <div class="bc-desc">A classic maze game with three difficulty level</div>
+        <div class="bc-desc">A classic maze game with three difficulty levels.</div>
       </div>
-      <div class="bc-foot"><a href="https://github.com/KPSreedhar/Maze-Master-V2" target="_blank" class="bc-link">GitHub →</a><span class="bc-meta">React</span><span class="bc-meta">react Router</span></div>
+      <div class="bc-foot"><a href="https://github.com/KPSreedhar/Maze-Master-V2" target="_blank" class="bc-link">GitHub →</a><span class="bc-meta">React · React Router</span></div>
     </div>
 
-    <div class="bc c6 rev d3">
+    <div class="bc rev d3">
       <div class="bc-thumb"><div class="tbg t5"></div><span class="bc-emoji">🔨</span></div>
       <div class="bc-info">
         <div class="bc-tags"><span class="bc-tag tg">HTML</span><span class="bc-tag tp">JS</span></div>
         <div class="bc-title">Whack-a-Mole</div>
-        <div class="bc-desc">A classic Whack-a-Mole game with timmer with audio and sound toggle feature</div>
+        <div class="bc-desc">A classic Whack-a-Mole game with a timer, audio, and a sound toggle feature.</div>
       </div>
-      <div class="bc-foot"><a href="https://github.com/KPSreedhar/Whack-a-Mole" target="_blank" class="bc-link">GitHub →</a><span class="bc-meta">HTML</span><span class="bc-meta">CSS</span><span class="bc-meta">JS</span></div>
+      <div class="bc-foot"><a href="https://github.com/KPSreedhar/Whack-a-Mole" target="_blank" class="bc-link">GitHub →</a><span class="bc-meta">HTML · CSS · JS</span></div>
     </div>
   </div>
 </section>
